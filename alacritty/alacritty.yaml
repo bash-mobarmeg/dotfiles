@@ -1,0 +1,33 @@
+window:
+  opacity: 1.0
+  decorations: None
+  padding:
+    x: 5
+    y: 5
+  class:
+    general: Alacritty
+    instance: Alacritty
+
+colors:
+  primary:
+    background: '#101010'
+    foreground: '#cfcfcf'
+
+font:
+  size: 17.0
+  normal:
+    family: 'Iosevka'
+    style: Regular
+  bold:
+    family: 'Iosevka'
+    style: Bold
+  italic:
+    family: 'Iosevka'
+    style: Italic
+
+keyboard:
+  bindings:
+    - key: Return
+      mods: Alt
+      action: SpawnNewInstance
+
