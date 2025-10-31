@@ -24,6 +24,13 @@ echo "🪟 Installing Hyprland environment..."
 sudo apt-get install -y \
   hyprland hyprpaper wofi waybar rofi wl-copy wl-clipboard sway-notification-center grim slurp
 
+# For Hypridle
+sudo apt-get install -y wayland wayland-protocols hyprland-protocols hyprlang sdbus-c++ hyprwayland-scanner
+
+# For Hyprlock
+sudo apt-get install -y cairo hyprgraphics hyprlang hyprutils hyprwayland-scanner mesa pam pango sdbus-cpp wayland-client wayland-protocols xkbcommon
+
+
 # Don't forget to install hyprshot from github
 
 # --- Install global Node.js package managers ---
