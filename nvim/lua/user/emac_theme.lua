@@ -52,6 +52,8 @@ local highlights = {
   ["WarningMsg"]     = { fg = colors.orange },
   ["InfoMsg"]        = { fg = colors.yellow },
 
+  ["NotifyBackground"]   = { bg = MyColors.secondary },
+
   ---------------------------------------------------------
   -- 💬 Syntax Groups
   ---------------------------------------------------------

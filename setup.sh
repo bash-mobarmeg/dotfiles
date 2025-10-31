@@ -22,7 +22,7 @@ sudo apt-get install -y \
 # --- Install Hyprland and related utilities ---
 echo "🪟 Installing Hyprland environment..."
 sudo apt-get install -y \
-  hyprland hyprpaper wofi waybar rofi
+  hyprland hyprpaper wofi waybar rofi wl-copy wl-clipboard
 
 # --- Install global Node.js package managers ---
 echo "📦 Installing Yarn and PNPM globally via npm..."

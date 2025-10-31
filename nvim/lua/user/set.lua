@@ -70,7 +70,7 @@ vim.opt.fillchars = {
 -- Wrapping & invisible characters
 vim.opt.wrap = false
 vim.opt.list = true
-vim.opt.listchars:append("eol:⤵")  -- Pick your favorite end-of-line symbol
+vim.opt.listchars:append("eol:↴")  -- ⤹ ⤸ ⤴  ⤵  ⤶  ↫  ↴  ⮐   ↩   ↷   ⃕  ↲
 
 
 -----------------------------------------------------------

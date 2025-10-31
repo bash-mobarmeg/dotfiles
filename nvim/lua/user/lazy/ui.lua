@@ -21,14 +21,6 @@ return {
   },
 
   {
-    "m-demare/hlargs.nvim",
-    config = function()
-      require('hlargs').setup()
-      require('hlargs').enable()
-    end
-  },
-
-  {
     "utilyre/barbecue.nvim", -- VSCode like winbar
     name = "barbecue",
     version = "*",

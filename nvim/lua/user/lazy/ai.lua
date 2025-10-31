@@ -6,7 +6,14 @@ return {
       local neocodeium = require("neocodeium")
       local cmp = require("cmp")
 
-      neocodeium.setup()
+      neocodeium.setup({
+        filter = function(bufnr)
+            if vim.endswith(vim.api.nvim_buf_get_name(bufnr), ".env") then
+                return false
+            end
+            return true
+        end
+      })
 
       cmp.event:on("menu_opened", function()
         -- vim.defer_fn(function()
