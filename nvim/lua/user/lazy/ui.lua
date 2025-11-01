@@ -5,6 +5,49 @@ return {
   },
 
   {
+    "rcarriga/nvim-notify",
+    render = "default",
+    stages = "slide",
+    top_down = true,
+    minimum_width = 50,
+    config = function ()
+      local notify = require("notify")
+      vim.notify = notify
+    end
+  },
+
+  {
+    -- <leader>k for fingind words
+    "hadronized/hop.nvim",
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      require('hop').setup({
+        keys = 'etovxqpdygfblzhckisuran'
+      });
+    end
+  },
+
+  {
+    "j-hui/fidget.nvim",
+    config = function ()
+      local fidget = require("fidget")
+
+      fidget.setup({
+        notification = {
+          window = {
+            winblend = 0,               -- fully opaque
+            border = "rounded",
+            normal_hl = "FidgetNormal", -- highlight group for background
+          },
+        },
+      })
+
+
+      vim.api.nvim_set_hl(0, "FidgetNormal", { bg = MyColors.secondary })
+    end
+  },
+
+  {
     "saecki/live-rename.nvim",
     config = function ()
       local live_rename = require("live-rename")

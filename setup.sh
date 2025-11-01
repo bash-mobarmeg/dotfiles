@@ -22,7 +22,7 @@ sudo apt-get install -y \
 # --- Install Hyprland and related utilities ---
 echo "🪟 Installing Hyprland environment..."
 sudo apt-get install -y \
-  hyprland hyprpaper wofi waybar rofi wl-copy wl-clipboard sway-notification-center grim slurp
+  hyprland hyprpaper wofi waybar rofi wl-clipboard sway-notification-center grim slurp
 
 # For Hypridle
 sudo apt-get install -y wayland wayland-protocols hyprland-protocols hyprlang sdbus-c++ hyprwayland-scanner

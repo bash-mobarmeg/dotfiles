@@ -1,4 +1,31 @@
 return {
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
+  },
+
+  {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup()
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
+  },
+
+  {
+    -- Color picker
+    "uga-rosa/ccc.nvim",
+    config = function()
+      require("ccc").setup()
+    end
+  },
+
+  {
   "oysandvik94/curl.nvim",
   cmd = { "CurlOpen" },
   config = function()
@@ -31,4 +58,4 @@ return {
     -- end, { desc = "Choose a global collection and open it" })
   end,
 }
-
+}

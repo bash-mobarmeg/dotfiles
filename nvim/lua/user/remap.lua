@@ -84,9 +84,6 @@ vim.keymap.set("n", "<C-c>", ":!", { desc = "Run shell command" })
 -- 🔄 Restart LSP server
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
--- 🧠 AI Command (Gen.nvim)
-vim.keymap.set({ "n", "v" }, "<leader>]", "<cmd>Gen<CR>", { desc = "Run AI Gen command" })
-
 
 -----------------------------------------------------------
 -- 🔀 MOVEMENT ENHANCEMENTS
