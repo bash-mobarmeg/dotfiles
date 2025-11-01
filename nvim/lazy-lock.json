@@ -15,7 +15,6 @@
   "darkplus.nvim": { "branch": "master", "commit": "c7fff5ce62406121fc6c9e4746f118b2b2499c4c" },
   "darkrose.nvim": { "branch": "main", "commit": "7d3ffd24460dafdcdbd50322442b8f4d1152c6f6" },
   "fidget.nvim": { "branch": "main", "commit": "e32b672d8fd343f9d6a76944fedb8c61d7d8111a" },
-  "floatingtodo.nvim": { "branch": "main", "commit": "b71c3dd66bb16ead20caed223bfe5ebf4724f640" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "github-nvim-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "hop.nvim": { "branch": "v2", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },

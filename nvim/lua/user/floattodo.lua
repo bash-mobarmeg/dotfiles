@@ -1,14 +1,4 @@
-local M = {}
-
 local win = nil
-
-local default_opts = {
-	target_file = "~/notes/todo.md",
-	border = "single",
-	width = 0.8,
-	height = 0.8,
-	position = "center",
-}
 
 local function expand_path(path)
 	if path:sub(1, 1) == "~" then
@@ -97,20 +87,40 @@ local function open_floating_file(opts)
 	})
 end
 
-local function setup_user_commands(opts)
-	opts = vim.tbl_deep_extend("force", default_opts, opts)
+local function find_project_root()
+  -- Find the nearest directory containing a package.json
+  local cwd = vim.fn.getcwd()
+  local root = vim.fn.findfile("package.json", cwd .. ";")
+  if root == "" then
+      return cwd  -- fallback to current dir
+  end
+  return vim.fn.fnamemodify(root, ":h")
+end
 
-    vim.keymap.set("n", "<leader>nv", function ()
-      open_floating_file(opts)
-    end, { desc = "Horizontal split" })
+
+local project_root = find_project_root()
+local note_path = project_root .. "/NOTE.md"
+
+local default_opts = {
+	target_file = note_path,
+  border = "rounded",
+  width = 1.0,
+  height = 0.85,
+  position = "center",
+}
+
+local function setup_user_commands(opts)
+  vim.keymap.set("n", "<leader>nv", function ()
+    open_floating_file(opts)
+  end, { desc = "Horizontal split" })
 
 	vim.api.nvim_create_user_command("Td", function()
 		open_floating_file(opts)
 	end, {})
 end
 
-M.setup = function(opts)
-	setup_user_commands(opts)
+local function setup()
+	setup_user_commands(default_opts)
 end
 
-return M
+setup();

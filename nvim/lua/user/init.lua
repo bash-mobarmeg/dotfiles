@@ -11,6 +11,8 @@ require("user.emac_theme")
 require("user.cursor")
 require("user.tabs")
 
+require("user.floattodo")
+
 -- require("user.note") -- optional
 
 -- ─────────────────────────────────────────────
