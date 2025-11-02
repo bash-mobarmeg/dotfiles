@@ -4,6 +4,22 @@
 -- Style: Subtle Blue Glow + Clean Icons
 -----------------------------------------------------------
 
+-----------------------------------------------------------
+-- 🗂️ TAB MANAGEMENT
+-----------------------------------------------------------
+-- Alt + [1–9] → Jump to specific tab
+for i = 1, 9 do
+  vim.keymap.set("n", "<M-" .. i .. ">", function()
+    local tabs = vim.api.nvim_list_tabpages()
+    if i <= #tabs then
+      vim.cmd(i .. "tabnext")
+    else
+      vim.notify("Tab " .. i .. " does not exist", vim.log.levels.WARN)
+    end
+  end, { desc = "Go to tab " .. i })
+end
+
+
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Apply highlights immediately

@@ -4,7 +4,7 @@
 local ns = vim.api.nvim_create_namespace("todo_highlights")
 
 -- Define custom highlight groups
-vim.api.nvim_set_hl(0, "TodoHighlight",  { fg = "#000000", bg = MyColors.yellow, bold = true })
+vim.api.nvim_set_hl(0, "TodoHighlight",  { fg = "#000000", bg = MyColors.gold, bold = true })
 vim.api.nvim_set_hl(0, "FixmeHighlight", { fg = "#000000", bg = MyColors.warn, bold = true })
 vim.api.nvim_set_hl(0, "NoteHighlight",  { fg = "#000000", bg = MyColors.accent, bold = true })
 

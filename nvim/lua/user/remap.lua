@@ -11,16 +11,8 @@ vim.g.mapleader = " "
 -----------------------------------------------------------
 -- 🗂️ TAB MANAGEMENT
 -----------------------------------------------------------
--- Alt + [1–9] → Jump to specific tab
-for i = 1, 9 do
-  vim.keymap.set("n", "<M-" .. i .. ">", function()
-    vim.cmd(i .. "tabnext")
-  end, { desc = "Go to tab " .. i })
-end
-
 -- New tab
 vim.keymap.set("n", "te", ":tabnew<CR>", { desc = "New Tab" })
-
 
 -----------------------------------------------------------
 -- 💾 FILE OPERATIONS
