@@ -15,6 +15,35 @@ local function highlight_todos()
 
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
+  -- Define keywords and corresponding highlight groups
+  local keywords = {
+    ["@TODO"] = "TodoHighlight",
+    ["@FIXME"] = "FixmeHighlight",
+    ["@BUG"]  = "FixmeHighlight",
+    ["@NOTE"] = "NoteHighlight",
+  }
+
+  for i, line in ipairs(lines) do
+    for kw, hl_group in pairs(keywords) do
+      -- Find all occurrences of the keyword in the line
+      for start_pos, _ in line:gmatch("()" .. kw) do
+        local end_pos = start_pos + #kw
+        vim.api.nvim_buf_set_extmark(buf, ns, i - 1, start_pos - 1, {
+          end_col = end_pos - 1,
+          hl_group = hl_group,
+        })
+      end
+    end
+  end
+end
+
+
+local function highlight_todos_line()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
+
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
   for i, line in ipairs(lines) do
     local hl_group = nil
 
@@ -61,6 +90,7 @@ local function search_for_annotations()
     "--glob", "!**/.logs/*",
   }
 
+  -- Suppose `file` is the absolute path returned by rg
   for _, ext in ipairs(exts) do
     table.insert(cmd, "--glob")
     table.insert(cmd, "*." .. ext)
@@ -69,8 +99,20 @@ local function search_for_annotations()
   table.insert(cmd, patterns)
   table.insert(cmd, project_dir)
 
+  -- Run rg
   local result = vim.fn.systemlist(cmd)
-  return result
+
+  -- Convert absolute paths to relative paths
+  local relative_results = {}
+  for _, line in ipairs(result) do
+    local path, rest = line:match("([^:]+):(.*)")
+    if path and rest then
+      local rel_path = path:gsub("^" .. vim.pesc(project_dir) .. "/?", "")
+      table.insert(relative_results, rel_path .. ":" .. rest)
+    end
+  end
+
+  return relative_results
 end
 
 
