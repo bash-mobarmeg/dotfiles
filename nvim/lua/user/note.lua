@@ -1,23 +1,20 @@
--- ╭──────────────────────────────────────────────────────────────╮
--- │ 🔍 Highlight Custom TODO / FIXME / NOTE Lines in Neovim      │
--- │ Highlights any line containing tags like:                    │
--- │   @TODO, @FIXME, @BUG, @NOTE, @HACK                          │
--- │ The entire line gets a background highlight.                 │
--- ╰──────────────────────────────────────────────────────────────╯
+-- @NOTE - Test
 
+-- Namespace for highlighting
 local ns = vim.api.nvim_create_namespace("todo_highlights")
 
+-- Define custom highlight groups
 vim.api.nvim_set_hl(0, "TodoHighlight",  { fg = "#000000", bg = MyColors.yellow, bold = true })
-vim.api.nvim_set_hl(0, "FixmeHighlight", { fg = "#ffffff", bg = MyColors.warn, bold = true })
-vim.api.nvim_set_hl(0, "NoteHighlight",  { fg = "#000000", bg = MyColors.green, bold = true })
+vim.api.nvim_set_hl(0, "FixmeHighlight", { fg = "#000000", bg = MyColors.warn, bold = true })
+vim.api.nvim_set_hl(0, "NoteHighlight",  { fg = "#000000", bg = MyColors.accent, bold = true })
 
+-- Function to highlight annotations in the current buffer
 local function highlight_todos()
   local buf = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
 
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
-  -- @NOTE
   for i, line in ipairs(lines) do
     local hl_group = nil
 
@@ -30,7 +27,6 @@ local function highlight_todos()
     end
 
     if hl_group then
-      -- Use end_row to extend highlight to end of line
       vim.api.nvim_buf_set_extmark(buf, ns, i - 1, 0, {
         end_row = i - 1,
         end_col = #line,
@@ -41,6 +37,109 @@ local function highlight_todos()
   end
 end
 
+-- Automatically highlight todos on certain events
 vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged", "TextChangedI" }, {
   callback = highlight_todos,
 })
+
+local function search_for_annotations()
+  local project_dir = vim.fn.getcwd()
+  local patterns = "@TODO|@NOTE|@BUG"
+  local exts = { "js", "ts", "lua" }
+
+  local cmd = {
+    "rg",
+    "--no-heading",
+    "--line-number",
+    "--color=never",
+    "--smart-case",
+    "--hidden",  -- optional: include dotfiles if needed
+    "--ignore-file", ".gitignore", -- respects root ignore file
+    "--glob", "!**/node_modules/*",
+    "--glob", "!**/dist/*",
+    "--glob", "!**/build/*",
+    "--glob", "!**/.logs/*",
+  }
+
+  for _, ext in ipairs(exts) do
+    table.insert(cmd, "--glob")
+    table.insert(cmd, "*." .. ext)
+  end
+
+  table.insert(cmd, patterns)
+  table.insert(cmd, project_dir)
+
+  local result = vim.fn.systemlist(cmd)
+  return result
+end
+
+
+-- Function to display the results in a floating window
+local function show_in_buffer(results)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, results)
+
+  local width = 80
+  local height = math.min(#results + 2, 20)
+  local editor_width = vim.o.columns
+  local editor_height = vim.o.lines
+  local row = math.floor((editor_height - height) / 2 - 1)
+  local col = math.floor((editor_width - width) / 2)
+
+  local opts = {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = 'minimal',
+    border = 'rounded',
+  }
+
+  local win = vim.api.nvim_open_win(buf, true, opts)
+
+  -- Map Enter to jump to file
+  vim.api.nvim_buf_set_keymap(buf, 'n', '<CR>', '', {
+    noremap = true,
+    silent = true,
+    callback = function()
+      local line = vim.api.nvim_get_current_line()
+      local file, lnum = line:match("^(.+):(%d+)")
+      if file and lnum then
+        vim.api.nvim_win_close(win, true)
+        vim.cmd("edit " .. file)
+        vim.api.nvim_win_set_cursor(0, {tonumber(lnum), 0})
+      else
+        vim.notify("Could not parse line: " .. line)
+      end
+    end,
+  })
+
+  -- 🧠 Add this: close the window when pressing "q"
+  vim.keymap.set('n', 'q', function()
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_win_close(win, true)
+    end
+  end, { buffer = buf, nowait = true, silent = true })
+end
+
+
+-- Function to search for annotations and show them in a buffer
+local function search_and_show()
+  local results = search_for_annotations()
+
+  if #results > 0 then
+    show_in_buffer(results)
+  else
+    vim.notify("No annotations found!")
+  end
+end
+
+-- Alternatively, you can create a custom command for this
+vim.api.nvim_create_user_command('TodoAnnotations', search_and_show, {})
+
+-- Keybinding to trigger the annotation search
+vim.api.nvim_set_keymap('n', '<leader>ta', ':TodoAnnotations<CR>', { noremap = true, silent = true })
+

@@ -28,10 +28,38 @@ return {
   },
 
   {
-    "rcarriga/nvim-notify",
+    "folke/snacks.nvim",
     opts = {
-      timeout = 500,
+      scroll = { enabled = false },
     },
+    keys = {},
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    config = function ()
+      require("notify").setup({
+        -- Time before notification closes
+        timeout = 2000,
+
+        -- Maximum width of the notification window
+        max_width = function()
+          return math.floor(vim.o.columns * 0.5) -- 50% of screen width
+        end,
+
+        -- Where notifications appear
+        top_down = false,  -- bottom to top
+
+        -- Optional: Render stages ("slide", "fade_in_slide_out", "static")
+        stages = "slide",
+
+        -- Optional: border style
+        border = "rounded",
+
+        -- Optional: minimum width
+        minimum_width = 20,
+      })
+    end
   },
 
   {

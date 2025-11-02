@@ -4,7 +4,7 @@
 -- Style: Muted Warm + Cold Mix (Artisan Gray Aesthetic)
 -----------------------------------------------------------
 
--- #dfdcbc
+-- #dfdcbc , #eeecec
 -- 🎨 Palette ------------------------------------------------
 local colors = {
   yellow      = "#a08c59", -- #d9bb54
