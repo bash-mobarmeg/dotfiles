@@ -91,6 +91,14 @@ local highlights = {
   ["type"]                    = { fg = colors.dark_white },
   ["@type"]                   = { fg = colors.yellow },
 
+  -- Telescope
+  ["TelescopeResultsNormal"]  = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopeResultsBorder"]  = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopeResultsTitle"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptNormal"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptBorder"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptTitle"]    = { fg = colors.ui_text, bg = MyColors.primary },
+
   -- Variables & Fields
   ["@variable"]               = { fg = colors.ui_text },
   ["@variable.typescript"]    = { fg = colors.ui_text },

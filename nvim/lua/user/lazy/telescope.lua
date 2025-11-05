@@ -6,14 +6,23 @@ return {
   },
   config = function()
     require("telescope").setup({
-      extensions = {
+      defaults = {
+        layout_strategy = "vertical",
+        layout_config = {
+          height = 0.95,
+          vertical = {
+            width = 0.90
+          },
+        },
+
         -- Ignore these patterns when searching
         file_ignore_patterns = {
-          "node_modules",
-          "dist",
-          "%.git/",
+          "^node_modules/",
+          "^dist/",
+          "^.git/",
           "venv/",
-          "target/",
+          "^target/",
+          "^build/",
           "%.lock",
           "__pycache__",
         },

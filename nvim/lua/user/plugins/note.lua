@@ -1,4 +1,4 @@
--- @NOTE - Test
+-- @NOTE - it work :)
 
 -- Namespace for highlighting
 local ns = vim.api.nvim_create_namespace("todo_highlights")
