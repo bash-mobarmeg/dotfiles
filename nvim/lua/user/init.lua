@@ -1,19 +1,21 @@
 -- Load core modules
 
 require("user.globals")
-require("user.set")
-require("user.remap")
+require("user.settings.set")
+require("user.settings.remap")
 
 require("user.lazy_init")
 require("user.lazy")
 
-require("user.emac_theme")
-require("user.cursor")
-require("user.tabs")
+-- Custom themes
+-- require("user.themes.emac_theme")
+require("user.themes.cooler_theme")
 
-require("user.floattodo")
-
-require("user.note")
+-- Custom plugins
+require("user.plugins.cursor")
+require("user.plugins.tabs")
+require("user.plugins.floattodo")
+require("user.plugins.note")
 
 -- ─────────────────────────────────────────────
 -- 🧩  Utility
@@ -80,11 +82,4 @@ autocmd("LspAttach", {
     keymap("n", "]d", vim.diagnostic.goto_prev, opts)
   end,
 })
-
--- ─────────────────────────────────────────────
--- 🌐  Netrw (fallback file browser)
--- ─────────────────────────────────────────────
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
 

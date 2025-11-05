@@ -6,7 +6,6 @@ return {
   },
 
   config = function()
-    local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
@@ -19,20 +18,13 @@ return {
       cmp_lsp.default_capabilities()
     )
 
-    -- vim.lsp.config('rust_analyzer', {
-    --   -- Server-specific settings. See `:help lsp-quickstart`
-    --   settings = {
-    --     ['rust-analyzer'] = {},
-    --   },
-    -- })
-
     mason.setup()
     mason_lspconfig.setup({
 
       ensure_installed = {
         "lua_ls",
         "ts_ls",
-        "rust_analyzer",
+        "rust_analyzer"
       },
 
       handlers = {
@@ -67,46 +59,30 @@ return {
           })
         end,
 
-        ["rust_analyzer"] = function()
-          lspconfig.rust_analyzer.setup({
-            capabilities = capabilities,
-            on_attach = function(client)
-            end,
-          })
-        end,
+        -- ["rust_analyzer"] = function()
+        --   lspconfig.rust_analyzer.setup({
+        --     capabilities = capabilities,
+        --     settings = {
+        --       ["rust-analyzer"] = {
+        --         rustfmt = {
+        --           extraArgs = { "+nightly" }, -- optional, if you want nightly rustfmt
+        --         },
+        --       },
+        --     },
+        --     on_attach = function(client, bufnr)
+        --       -- Enable formatting for rust-analyzer
+        --       client.server_capabilities.documentFormattingProvider = true
+        --
+        --       -- Optional: add keymap for formatting
+        --       vim.keymap.set("n", "<leader>lf", function()
+        --         vim.lsp.buf.format({ async = true })
+        --       end, { desc = "Format Rust with rust-analyzer", buffer = bufnr })
+        --     end,
+        --   })
+        -- end,
+
       }
     })
-
-    -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    --
-    -- cmp.setup({
-    --   snippet = {
-    --     expand = function(args)
-    --       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-    --     end,
-    --   },
-    --
-    --   completion = {
-    --     completeopt = "menu,menuone,preview,noselect"
-    --   },
-    --
-    --   mapping = cmp.mapping.preset.insert({
-    --     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    --     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    --     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    --     ["<C-Space>"] = cmp.mapping.complete(),
-    --   }),
-    --
-    --   sources = cmp.config.sources(
-    --     {
-    --       { name = 'nvim_lsp' },
-    --       { name = 'luasnip' }, -- For luasnip users.
-    --     },
-    --     {
-    --       { name = 'buffer' },
-    --     }
-    --   )
-    -- })
 
     vim.diagnostic.config({
       virtual_text = false,
@@ -133,6 +109,5 @@ return {
       },
     })
 
-    vim.api.nvim_set_hl(0, "FidgetNormal", { bg = "#1e1e2e", fg = "#cdd6f4" }) -- Background and text color
   end
 }

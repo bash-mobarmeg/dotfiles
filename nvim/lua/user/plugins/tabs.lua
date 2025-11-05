@@ -32,7 +32,7 @@ local function apply_tab_highlights()
     vim.api.nvim_set_hl(0, "TabLine",         { bg = MyColors.secondary, fg = "#a0a0a0" })
     vim.api.nvim_set_hl(0, "TabLineSel",      { bg = MyColors.secondary, fg = "#c4a463" })
     vim.api.nvim_set_hl(0, "TabLineFill",     { bg = MyColors.secondary, fg = "#a0a0a0" })
-    vim.api.nvim_set_hl(0, "TabLineModified", { bg = MyColors.secondary, fg = "#e46876", bold = true })
+    vim.api.nvim_set_hl(0, "TabLineModified", { bg = MyColors.secondary, fg = "#e46876" })
 end
 
 apply_tab_highlights()

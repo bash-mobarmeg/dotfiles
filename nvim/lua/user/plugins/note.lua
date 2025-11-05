@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged", "TextCha
 local function search_for_annotations()
   local project_dir = vim.fn.getcwd()
   local patterns = "@TODO|@NOTE|@BUG"
-  local exts = { "js", "ts", "lua" }
+  local exts = { "js", "ts", "lua", "rs" }
 
   local cmd = {
     "rg",
@@ -85,6 +85,7 @@ local function search_for_annotations()
     "--hidden",  -- optional: include dotfiles if needed
     "--ignore-file", ".gitignore", -- respects root ignore file
     "--glob", "!**/node_modules/*",
+    "--glob", "!**/target/*",
     "--glob", "!**/dist/*",
     "--glob", "!**/build/*",
     "--glob", "!**/.logs/*",

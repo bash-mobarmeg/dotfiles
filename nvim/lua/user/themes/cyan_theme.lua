@@ -6,27 +6,28 @@
 
 -- #dfdcbc , #eeecec
 -- 🎨 Palette ------------------------------------------------
+-- 🎨 Palette ------------------------------------------------
 local colors = {
-  yellow      = "#a08c59", -- #d9bb54
-  orange      = "#9e7c59",
-  blue        = "#5f8fc1",
-  blue_gray   = "#4b5b70",
-  red         = "#b35e64",
-  purple      = "#975faf",
-  green       = "#86a76d",
-  cyan        = "#5c959e",
+  yellow      = "#e2c774",  -- sunlit sand
+  orange      = "#d89b6c",  -- amber coral
+  blue        = "#6daedb",  -- soft sky blue
+  blue_gray   = "#4a6a73",  -- deep sea slate
+  red         = "#c9707d",  -- warm rose
+  purple      = "#9a8fd0",  -- gentle violet
+  green       = "#7bbf9b",  -- jade green
+  cyan        = "#6ca6a3",  -- core cyan tone
 
-  gray        = "#272b33",
-  light_gray  = "#4d525d",
-  faint_gray  = "#31353c",
-  dark_white  = "#6e7973",
-  white       = "#9d9d9d",
-  black       = "#21242a",
+  gray        = "#1f2527",  -- dark base
+  light_gray  = "#3b4649",  -- UI neutral
+  faint_gray  = "#283033",  -- subtle alt-bg
+  dark_white  = "#8a9a9c",  -- soft desaturated white
+  white       = "#c1d1cf",  -- seafoam white
+  black       = "#151a1c",  -- deep oceanic black
 
-  linenr      = "#4d525d",
-  ui_text     = "#8b8b8b",
-  ui_text_rev = "#21242a",
-  comment     = "#614a2e",
+  linenr      = "#3b4649",
+  ui_text     = "#9ab5b6",
+  ui_text_rev = "#151a1c",
+  comment     = "#5a7071",
 }
 
 
@@ -72,8 +73,6 @@ local highlights = {
   ["@function"]               = { fg = colors.white },
   ["function.call"]           = { fg = colors.white },
   ["@function.call"]          = { fg = colors.white },
-  ["@lsp.mod.readonly.typescript"]  = { fg = colors.white },
-  ["@lsp.type.function.typescript"] = { fg = colors.blue_gray },
   ["@function.builtin"]       = { fg = colors.white },
   ["@function.macro"]         = { fg = colors.white },
   ["rustFuncCall"]            = { fg = colors.blue_gray },
@@ -98,10 +97,15 @@ local highlights = {
   ["@variable.member"]        = { fg = colors.ui_text },
   ["@variable.member.typescript"] = { fg = colors.red },
   ["variable.builtin"]        = { fg = colors.ui_text },
-  ["@variable.parameter"]      = { fg = colors.red },
+  ["@variable.parameter"]      = { fg = colors.ui_text },
   ["@variable.parameter.typescript"]      = { fg = colors.red },
   ["@property"]               = { fg = colors.ui_text },
   ["@field"]                  = { fg = colors.yellow },
+  ["@lsp.mod.declaration.typescript"]  = { fg = colors.red },
+  ["@lsp.mod.local.typescript"]  = { fg = colors.red },
+  ["@lsp.typemod.variable.readonly.typescript"]  = { fg = colors.ui_text },
+  ["@lsp.mod.readonly.typescript"]  = { fg = colors.ui_text },
+  ["@lsp.type.function.typescript"] = { fg = colors.blue_gray },
 
   -- Operators & Punctuation
   ["operator"]                = { fg = colors.ui_text },
@@ -125,18 +129,6 @@ local highlights = {
   ["markup.quote"]             = { fg = colors.yellow },
   ["markup.link.url"]          = { fg = colors.cyan, modifiers = { "underlined" } },
   ["markup.link.text"]         = { fg = colors.purple },
-
-  ---------------------------------------------------------
-  -- 🔁 Diff & Diagnostics
-  ---------------------------------------------------------
-  ["diff.plus"]                = { fg = colors.green },
-  ["diff.delta"]               = { fg = colors.yellow },
-  ["diff.minus"]               = { fg = colors.gray },
-
-  ["info"]                     = { fg = colors.green, modifiers = { "bold" } },
-  ["hint"]                     = { fg = colors.blue, modifiers = { "bold" } },
-  ["warning"]                  = { fg = colors.yellow, modifiers = { "bold" } },
-  ["error"]                    = { fg = colors.red, modifiers = { "bold" } },
 
   ---------------------------------------------------------
   -- 🖥️ UI Elements

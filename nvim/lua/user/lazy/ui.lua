@@ -44,7 +44,7 @@ return {
 
         -- Maximum width of the notification window
         max_width = function()
-          return math.floor(vim.o.columns * 0.5) -- 50% of screen width
+          return math.floor(vim.o.columns * 0.7) -- 50% of screen width
         end,
 
         -- Where notifications appear
@@ -82,14 +82,14 @@ return {
         notification = {
           window = {
             winblend = 0,               -- fully opaque
-            border = "rounded",
+            border = "none", -- rounded
             normal_hl = "FidgetNormal", -- highlight group for background
+            max_width = 50,             -- maximum width of the Fidget window
           },
         },
       })
 
-
-      vim.api.nvim_set_hl(0, "FidgetNormal", { bg = MyColors.secondary })
+      vim.api.nvim_set_hl(0, "FidgetNormal", { bg = MyColors.primary, fg = MyColors.fg }) -- Background and text color
     end
   },
 
@@ -123,7 +123,7 @@ return {
     config = function()
       require("barbecue").setup({
         theme = {
-            normal = { bg = "#101010" },
+            normal = { bg = MyColors.primary },
         },
       })
     end
@@ -147,29 +147,20 @@ return {
           vertical = " │",
           vertical_end = " ╰",
         },
+
         blend = {
-          factor = 0.25,  -- Transparency
-          background = true, -- Blend with background
+          factor = 0.20,  -- Transparency
+          background = false, -- Blend with background
         },
+
         -- Per-severity customization (optional)
         severity = {
-          [vim.diagnostic.severity.ERROR] = {
-            sign = " ",
-            hl = "DiagnosticError",
-          },
-          [vim.diagnostic.severity.WARN] = {
-            sign = " ",
-            hl = "DiagnosticWarn",
-          },
-          [vim.diagnostic.severity.INFO] = {
-            sign = " ",
-            hl = "DiagnosticInfo",
-          },
-          [vim.diagnostic.severity.HINT] = {
-            sign = " ",
-            hl = "DiagnosticHint",
-          },
+          [vim.diagnostic.severity.ERROR] = { sign = " ", hl = "DiagnosticError" },
+          [vim.diagnostic.severity.WARN]  = { sign = " ", hl = "DiagnosticWarn" },
+          [vim.diagnostic.severity.INFO]  = { sign = " ", hl = "DiagnosticInfo" },
+          [vim.diagnostic.severity.HINT]  = { sign = " ", hl = "DiagnosticHint" },
         },
+
         -- Add padding or offset
         window = {
           padding = 2,
@@ -184,6 +175,17 @@ return {
         highlight! link TinyInlineDiagnosticWarn DiagnosticWarn
         highlight! link TinyInlineDiagnosticHint DiagnosticHint
       ]]
+
+      vim.api.nvim_set_hl(0, "DiagnosticError", { fg = MyColors.warn })
+      vim.api.nvim_set_hl(0, "DiagnosticWarn",  { fg = MyColors.yellow })
+      vim.api.nvim_set_hl(0, "DiagnosticInfo",  { fg = MyColors.gold })
+      vim.api.nvim_set_hl(0, "DiagnosticHint",  { fg = MyColors.hint })
+
+      vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = MyColors.warn,   bg = MyColors.secondary })
+      vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn",  { fg = MyColors.gold,   bg = MyColors.secondary })
+      vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo",  { fg = MyColors.yellow, bg = MyColors.secondary })
+      vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint",  { fg = MyColors.hint,   bg = MyColors.secondary })
+
 
       tiny_diag.enable()
     end,
@@ -204,9 +206,9 @@ return {
         },
       })
 
-      vim.keymap.set("n", "<leader>tt", function()
-        require("trouble").toggle()
-      end)
+      -- vim.keymap.set("n", "<leader>tt", function()
+      --   require("trouble").toggle()
+      -- end)
 
       vim.keymap.set("n", "[t", function()
         require("trouble").next({ skip_groups = true, jump = true })
@@ -218,22 +220,65 @@ return {
 
       --    
       vim.fn.sign_define('DiagnosticSignError', { text = '┃', texthl = 'DiagnosticSignError' })
-      vim.fn.sign_define('DiagnosticSignWarn', { text = '┃', texthl = 'DiagnosticSignWarn' })
-      vim.fn.sign_define('DiagnosticSignInfo', { text = '┃', texthl = 'DiagnosticSignInfo' })
-      vim.fn.sign_define('DiagnosticSignHint', { text = '┃', texthl = 'DiagnosticSignHint' })
+      vim.fn.sign_define('DiagnosticSignWarn',  { text = '┃', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo',  { text = '┃', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint',  { text = '┃', texthl = 'DiagnosticSignHint' })
 
-      local colors = {
-        error = "#b7476f",
-        warn  = "#b08963",
-        info  = "#6b9fd7",
-        hint  = "#95b879",
-      }
-
-      vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = colors.error })
-      vim.api.nvim_set_hl(0, "DiagnosticSignWarn",  { fg = colors.warn })
-      vim.api.nvim_set_hl(0, "DiagnosticSignInfo",  { fg = colors.info })
-      vim.api.nvim_set_hl(0, "DiagnosticSignHint",  { fg = colors.hint })
+      vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = MyColors.warn })
+      vim.api.nvim_set_hl(0, "DiagnosticSignWarn",  { fg = MyColors.yellow })
+      vim.api.nvim_set_hl(0, "DiagnosticSignInfo",  { fg = MyColors.gold })
+      vim.api.nvim_set_hl(0, "DiagnosticSignHint",  { fg = MyColors.hint })
     end
   },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    main = "ibl",
+    config = function()
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+
+      local hooks = require "ibl.hooks"
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#3e4550" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#232323" })
+      end)
+
+      require("ibl").setup {
+        indent = {
+          highlight = highlight,
+          char = "┆"
+        },
+        whitespace = {
+          highlight = highlight,
+          remove_blankline_trail = false,
+        },
+        scope = {
+          highlight = highlight,
+          char = "│",
+          -- show_start = true,
+          -- show_end = true,
+        },
+      }
+
+      vim.g.rainbow_delimiters = { highlight = highlight }
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+    end
+  }
 }
 

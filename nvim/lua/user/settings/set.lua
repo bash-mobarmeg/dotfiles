@@ -4,6 +4,11 @@
 -- Style: Minimal / Fast / Aesthetic
 -----------------------------------------------------------
 
+-- 📝  LOGGING
+vim.opt.verbose = 10
+vim.opt.verbosefile = vim.fn.expand("~/.cache/nvim/verbose.log")
+
+
 -----------------------------------------------------------
 -- 🧭  BASIC UI
 -----------------------------------------------------------
@@ -21,6 +26,14 @@ vim.opt.laststatus = 0 -- Hide global statusline
 -- Custom tabline
 vim.o.showtabline = 2 -- Always show tabline
 vim.o.tabline = "%!v:lua.MyTabLine()"
+
+
+-- ─────────────────────────────────────────────
+-- 🌐  Netrw (fallback file browser)
+-- ─────────────────────────────────────────────
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
 
 -----------------------------------------------------------

@@ -6,14 +6,15 @@ return {
 
     null_ls.setup({
       sources = {
-        -- Prettier formatter
-        null_ls.builtins.formatting.prettierd, -- faster (via daemon)
+        -- Rust formatter
+        -- null_ls.builtins.formatting.rustfmt,  -- Use rustfmt for Rust
+
         -- OR use this if you don’t use prettierd:
-        -- null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.fish,
         -- null_ls.builtins.diagnostics.eslint_d.with({
         --   diagnostics_format = '[eslint] #{m}\n(#{c})'
         -- }),
-        -- null_ls.builtins.diagnostics.fish,
       },
     })
   end,

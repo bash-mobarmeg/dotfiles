@@ -57,10 +57,20 @@ vim.keymap.set("n", "<leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color Picke
 
 -- 🧹 Format file (using null-ls / Prettier)
 vim.keymap.set("n", "<leader>lf", function()
-  vim.lsp.buf.format({
-    filter = function(client) return client.name == "null-ls" end,
-    async = true,
-  })
+  -- Format only for Rust files with null-ls
+  if vim.bo.filetype ~= "rust" then
+    vim.lsp.buf.format({
+      filter = function(client) return client.name == "null-ls" end,
+      async = true,
+    })
+  else
+    vim.cmd("RustFmt")
+    vim.cmd("w")
+  end
+  -- vim.lsp.buf.format({
+  --   filter = function(client) return client.name == "null-ls" end,
+  --   async = true,
+  -- })
 end, { desc = "Format with Prettier" })
 
 -- 🧭 Tagbar
@@ -119,9 +129,10 @@ vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
 -- Smart word replace
-vim.keymap.set("n", "<leader>s",
-  [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]],
-  { desc = "Substitute word under cursor" })
+-- vim.keymap.set("n", "<leader>s",
+--   [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]],
+--   { desc = "Substitute word under cursor" })
+vim.keymap.set("n", "<leader>s", ":IncRename ", { desc = "Substitute word under cursor" })
 
 -- Make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })

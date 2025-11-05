@@ -16,12 +16,13 @@ vim.opt.cursorline = true
 -- 🎨 Cursor highlight setup function
 local function set_cursor_highlights()
   local cursor_colors = {
-    Cursor        = { fg = "#000000", bg = "#54667d" },
-    CursorInsert  = { fg = "#000000", bg = "#54667d" },
-    CursorReplace = { fg = "#000000", bg = "#54667d" },
-    CursorLine    = { bg = "#161616" },
-    CursorLineNr  = { fg = "#b49b63", bg = "#161616" },
-    CursorIcon    = { fg = "#b49b63", bg = "#161616" },
+    Cursor        = { fg = "NONE", bg = MyColors.cursor },
+    CursorInsert  = { fg = "NONE", bg = MyColors.cursor },
+    CursorReplace = { fg = "NONE", bg = MyColors.cursor },
+
+    CursorLine    = { bg = MyColors.cursor_l },
+    CursorLineNr  = { fg = MyColors.gold, bg = MyColors.cursor_l },
+    CursorIcon    = { fg = MyColors.gold, bg = MyColors.cursor_l },
   }
 
   for group, style in pairs(cursor_colors) do
