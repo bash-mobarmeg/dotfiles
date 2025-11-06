@@ -115,6 +115,12 @@ local highlights = {
   ["@lsp.mod.readonly.typescript"]  = { fg = colors.ui_text },
   ["@lsp.type.function.typescript"] = { fg = colors.blue_gray },
 
+  -- Clangd
+  ["@variable.c"] = { fg = colors.blue_gray },
+  ["@function.call.c"] = { fg = colors.blue_gray },
+  ["@lsp.type.function.c"] = { fg = colors.red },
+  ["@lsp.type.variable.c"] = { fg = colors.ui_text },
+
   -- Operators & Punctuation
   ["operator"]                = { fg = colors.ui_text },
   ["punctuation"]             = { fg = colors.ui_text },

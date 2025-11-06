@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged", "TextCha
 local function search_for_annotations()
   local project_dir = vim.fn.getcwd()
   local patterns = "@TODO|@NOTE|@BUG"
-  local exts = { "js", "ts", "lua", "rs" }
+  local exts = { "js", "ts", "lua", "rs", "c", "cpp", "h", "hpp" }
 
   local cmd = {
     "rg",
@@ -82,16 +82,31 @@ local function search_for_annotations()
     "--line-number",
     "--color=never",
     "--smart-case",
-    "--hidden",  -- optional: include dotfiles if needed
-    "--ignore-file", ".gitignore", -- respects root ignore file
-    "--glob", "!**/node_modules/*",
-    "--glob", "!**/target/*",
-    "--glob", "!**/dist/*",
-    "--glob", "!**/build/*",
-    "--glob", "!**/.logs/*",
+    "--hidden",  -- include dotfiles if needed
   }
 
-  -- Suppose `file` is the absolute path returned by rg
+  -- Check if .gitignore exists before adding it
+  local gitignore_path = project_dir .. "/.gitignore"
+  if vim.fn.filereadable(gitignore_path) == 1 then
+    table.insert(cmd, "--ignore-file")
+    table.insert(cmd, gitignore_path)
+  end
+
+  -- Add glob exclusions
+  local ignore_globs = {
+    "!**/node_modules/*",
+    "!**/target/*",
+    "!**/dist/*",
+    "!**/build/*",
+    "!**/.logs/*",
+  }
+
+  for _, glob in ipairs(ignore_globs) do
+    table.insert(cmd, "--glob")
+    table.insert(cmd, glob)
+  end
+
+  -- Add file extension filters
   for _, ext in ipairs(exts) do
     table.insert(cmd, "--glob")
     table.insert(cmd, "*." .. ext)
@@ -100,7 +115,7 @@ local function search_for_annotations()
   table.insert(cmd, patterns)
   table.insert(cmd, project_dir)
 
-  -- Run rg
+  -- Run ripgrep
   local result = vim.fn.systemlist(cmd)
 
   -- Convert absolute paths to relative paths
@@ -115,6 +130,7 @@ local function search_for_annotations()
 
   return relative_results
 end
+
 
 
 -- Function to display the results in a floating window
@@ -142,6 +158,9 @@ local function show_in_buffer(results)
   }
 
   local win = vim.api.nvim_open_win(buf, true, opts)
+  -- Make the buffer unmodifiable
+  vim.bo[buf].modifiable = false
+  vim.bo[buf].readonly = true  -- optional, reinforces read-only behavior
 
   -- Map Enter to jump to file
   vim.api.nvim_buf_set_keymap(buf, 'n', '<CR>', '', {
