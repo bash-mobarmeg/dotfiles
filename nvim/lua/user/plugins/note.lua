@@ -199,9 +199,23 @@ local function search_and_show()
   end
 end
 
+
+function _G.startup_check_notes()
+  local results = search_for_annotations()
+
+  vim.notify("Check your notes!", vim.log.levels.INFO)
+  if #results > 0 then
+    vim.notify("Check your notes!", vim.log.levels.INFO)
+  else
+    vim.notify("No annotations found!", vim.log.levels.INFO)
+  end
+end
+
+
 -- Alternatively, you can create a custom command for this
 vim.api.nvim_create_user_command('TodoAnnotations', search_and_show, {})
 
 -- Keybinding to trigger the annotation search
 vim.api.nvim_set_keymap('n', '<leader>ta', ':TodoAnnotations<CR>', { noremap = true, silent = true })
 
+-- _G.OpenNoteBuffer = search_and_show();

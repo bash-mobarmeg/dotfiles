@@ -19,6 +19,7 @@ return {
         file_ignore_patterns = {
           "^node_modules/",
           "^dist/",
+          "^bak/",
           "^.git/",
           "venv/",
           "^target/",

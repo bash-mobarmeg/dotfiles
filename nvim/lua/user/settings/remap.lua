@@ -73,9 +73,6 @@ vim.keymap.set("n", "<leader>lf", function()
   -- })
 end, { desc = "Format with Prettier" })
 
--- 🧭 Tagbar
-vim.keymap.set("n", "<leader>tt", "<cmd>TagbarToggle<CR>", { desc = "Toggle Tagbar" })
-
 -- 🪶 Hop.nvim — quick navigation
 vim.keymap.set("n", "<leader>hh", "<cmd>HopWord<CR>", { desc = "Hop to word" })
 vim.keymap.set("n", "<leader>k", "<cmd>HopWord<CR>", { desc = "Hop to word (k)" })

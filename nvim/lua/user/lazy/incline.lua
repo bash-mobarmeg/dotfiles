@@ -10,6 +10,18 @@ return {
         padding = 0,
         margin = { horizontal = 0 },
       },
+      highlight = {
+          groups = {
+            InclineNormal = {
+              default = true,
+              group = "InclineNormal"
+            },
+            InclineNormalNC = {
+              default = true,
+              group = "InclineNormalNC"
+            }
+          },
+      },
       render = function(props)
         -- Get current mode
         local mode_map = {

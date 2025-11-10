@@ -7,7 +7,7 @@
 -- #dfdcbc , #eeecec
 -- 🎨 Palette ------------------------------------------------
 local colors = {
-  yellow      = "#a08c59",
+  yellow      = "#c08941",
   orange      = "#d48a4e",
   blue        = "#5d84b8",
   blue_gray   = "#4c566a",
@@ -37,23 +37,54 @@ local colors = {
 local highlights = {
 
   -- 🧱 Base UI
-  ["Normal"]         = { bg = "none", fg = colors.white },
-  ["NormalFloat"]    = { bg = "none", fg = colors.white },
+  ["Normal"]         = { bg = "none",           fg = colors.white },
+  ["NormalFloat"]    = { bg = MyColors.primary, fg = colors.white },
   ["NonText"]        = { fg = "#2a2a2a" },
 
   ["LineNr"]         = { fg = colors.yellow,     bg = MyColors.secondary, bold = true },
   ["LineNrAbove"]    = { fg = colors.dark_white, bg = MyColors.primary },
   ["LineNrBelow"]    = { fg = colors.dark_white, bg = MyColors.primary },
 
-  ["FloatBorder"]    = { bg = "none", fg = colors.blue_gray },
+  ["FloatBorder"]    = { bg = MyColors.primary,  fg = colors.ui_text },
+  ["Notification"]   = { bg = MyColors.primary,  fg = colors.ui_text },
+  ["NoiceFormatKind"]= { bg = MyColors.primary,  fg = colors.ui_text },
   ["Visual"]         = { bg = colors.dark_white, fg = colors.black },
+
+  -- Noise
+  ["NoiceCmdline"]      = { bg = MyColors.primary, fg = colors.ui_text },
+  ["NoiceCmdlinePopup"] = { bg = MyColors.primary, fg = colors.ui_text },
+  ["NoiceCmdlinePopupBorder"] = { bg = MyColors.primary, fg = colors.ui_text },
+  ["MsgArea"]           = { bg = MyColors.primary, fg = colors.ui_text },
 
   -- ⚠️ Messages
   ["ErrorMsg"]       = { fg = colors.red },
   ["WarningMsg"]     = { fg = colors.orange },
   ["InfoMsg"]        = { fg = colors.yellow },
 
-  ["NotifyBackground"]   = { bg = MyColors.secondary },
+  ["NotifyBackground"]  = { bg = MyColors.primary },
+  ["NotifyERRORBorder"] = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyWARNBorder"]  = { bg = MyColors.primary, fg = colors.orange },
+  ["NotifyINFOBorder"]  = { bg = MyColors.primary, fg = colors.green  },
+  ["NotifyDEBUGBorder"] = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyTRACEBorder"] = { bg = MyColors.primary, fg = colors.yellow },
+
+  ["NotifyERRORIcon"]   = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyWARNIcon"]    = { bg = MyColors.primary, fg = colors.orange },
+  ["NotifyINFOIcon"]    = { bg = MyColors.primary, fg = colors.green  },
+  ["NotifyDEBUGIcon"]   = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyTRACEIcon"]   = { bg = MyColors.primary, fg = colors.yellow },
+
+  ["NotifyERRORTitle"]  = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyWARNTitle"]   = { bg = MyColors.primary, fg = colors.orange },
+  ["NotifyINFOTitle"]   = { bg = MyColors.primary, fg = colors.green  },
+  ["NotifyDEBUGTitle"]  = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyTRACETitle"]  = { bg = MyColors.primary, fg = colors.yellow },
+
+  ["NotifyERRORBody"]   = { bg = MyColors.primary, link = "Normal" },
+  ["NotifyWARNBody"]    = { bg = MyColors.primary, link = "Normal" },
+  ["NotifyINFOBody"]    = { bg = MyColors.primary, link = "Normal" },
+  ["NotifyDEBUGBody"]   = { bg = MyColors.primary, link = "Normal" },
+  ["NotifyTRACEBody"]   = { bg = MyColors.primary, link = "Normal" },
 
   ---------------------------------------------------------
   -- 💬 Syntax Groups
@@ -116,8 +147,8 @@ local highlights = {
   ["@lsp.type.function.typescript"] = { fg = colors.blue_gray },
 
   -- Clangd
-  ["@variable.c"] = { fg = colors.blue_gray },
-  ["@function.call.c"] = { fg = colors.blue_gray },
+  ["@variable.c"]          = { fg = colors.red },
+  ["@function.call.c"]     = { fg = colors.red },
   ["@lsp.type.function.c"] = { fg = colors.red },
   ["@lsp.type.variable.c"] = { fg = colors.ui_text },
 
@@ -184,15 +215,11 @@ local highlights = {
 
   -- Popups / Menus
   ["ui.help"]                  = { fg = colors.white, bg = colors.gray },
-  ["ui.popup"]                 = { bg = colors.gray },
+  ["ui.popup"]                 = { bg = MyColors.primary },
   ["ui.window"]                = { fg = colors.gray },
   ["ui.menu"]                  = { fg = colors.ui_text, bg = colors.gray },
   ["ui.menu.selected"]         = { fg = colors.ui_text_rev, bg = colors.blue },
   ["ui.menu.scroll"]           = { fg = colors.ui_text, bg = colors.light_gray },
-
-  -- Notes
-  ["NoteInner"]                = { fg = colors.yellow, modifiers = { "bold" } },
-  ["NoteInnerText"]            = { fg = colors.yellow, modifiers = { "bold" } },
 }
 
 -----------------------------------------------------------

@@ -18,6 +18,11 @@ return {
       cmp_lsp.default_capabilities()
     )
 
+    -- require('lspconfig').clangd.setup({
+    --   cmd = {"clangd", "--compile-commands-dir=build"},
+    -- })
+
+
     mason.setup()
     mason_lspconfig.setup({
 

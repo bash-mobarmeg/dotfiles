@@ -1,7 +1,16 @@
 return {
   -- √ 󰞁 ¶
   {
-    "preservim/tagbar"
+    "hedyhli/outline.nvim",
+    config = function()
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>tt", "<cmd>Outline<CR>",
+        { desc = "Toggle Outline" })
+
+      require("outline").setup {
+        -- Your setup opts here (leave empty to use defaults)
+      }
+    end,
   },
 
   {
@@ -250,13 +259,13 @@ return {
       -- create the highlight groups in the highlight setup hook, so they are reset
       -- every time the colorscheme changes
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#3e4550" })
+        vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#3e4550" })
         vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowBlue",   { fg = "#232323" })
         vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowGreen",  { fg = "#232323" })
         vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowCyan",   { fg = "#232323" })
       end)
 
       require("ibl").setup {
