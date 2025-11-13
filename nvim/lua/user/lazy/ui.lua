@@ -121,6 +121,7 @@ return {
   {
     "utilyre/barbecue.nvim", -- VSCode like winbar
     name = "barbecue",
+    enabled = false,
     version = "*",
     dependencies = {
       "SmiteshP/nvim-navic",
@@ -132,7 +133,7 @@ return {
     config = function()
       require("barbecue").setup({
         theme = {
-            normal = { bg = MyColors.primary },
+            normal = { bg = MyColors.primary, fg = MyColors.fg },
         },
       })
     end
@@ -259,13 +260,13 @@ return {
       -- create the highlight groups in the highlight setup hook, so they are reset
       -- every time the colorscheme changes
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#3e4550" })
-        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowBlue",   { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowGreen",  { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#232323" })
-        vim.api.nvim_set_hl(0, "RainbowCyan",   { fg = "#232323" })
+        vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowBlue",   { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowGreen",  { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#5f514b" })
+        vim.api.nvim_set_hl(0, "RainbowCyan",   { fg = "#5f514b" })
       end)
 
       require("ibl").setup {

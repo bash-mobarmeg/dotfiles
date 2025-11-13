@@ -1,10 +1,10 @@
 -- In lua/config/colors.lua (for example)
 _G.MyColors = {
-  primary    = "#140f0f",
-  secondary  = "#231e1e",
+  primary    = "#1f110b",
+  secondary  = "#291b15",
   cursor     = "#9c8f84",
-  cursor_l   = "#1b1616",
-  fg         = "#cccccc",
+  cursor_l   = "#291b15",
+  fg         = "#a8968d",
   hint       = "#a0a0a0",
   accent     = "#5c959e",
   warn       = "#b35e64",

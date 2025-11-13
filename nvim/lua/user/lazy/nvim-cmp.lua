@@ -16,7 +16,7 @@ return {
     "onsails/lspkind.nvim", -- vs-code like pictograms
   },
   config = function()
-    local cmp = require("cmp")
+    local cmp     = require("cmp")
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
 
@@ -26,7 +26,10 @@ return {
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,preview", -- ,noselect
-        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+        border = "rounded",
+        autocomplete = {
+          require("cmp.types").cmp.TriggerEvent.TextChanged
+        },
       },
 
       snippet = { -- configure how nvim-cmp interacts with snippet engine

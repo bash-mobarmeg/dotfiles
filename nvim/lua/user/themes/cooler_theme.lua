@@ -7,27 +7,26 @@
 -- #dfdcbc , #eeecec
 -- 🎨 Palette ------------------------------------------------
 local colors = {
-  yellow      = "#c08941",
-  orange      = "#d48a4e",
-  blue        = "#5d84b8",
-  blue_gray   = "#4c566a",
-  red         = "#c75c54",
-  purple      = "#b57eb2",
-  green       = "#90a959",
-  cyan        = "#6ca6a3",
-
-  gray        = "#2c2420",
-  light_gray  = "#4b3e37",
-  faint_gray  = "#362e29",
-  dark_white  = "#9c8f84",
-  white       = "#c7b9a8",
-  black       = "#1e1916",
-
-  linenr      = "#4b3e37",
-  ui_text     = "#b8a89a",
-  ui_text_rev = "#1e1916",
-  comment     = "#7c6a5b",
+  yellow      = "#b4793b",
+  orange      = "#c17f47",
+  blue        = "#5579a8",
+  blue_gray   = "#464e63",
+  red         = "#b4544d",
+  purple      = "#a674a4",
+  green       = "#849853",
+  cyan        = "#639894",
+  gray        = "#28201d",
+  light_gray  = "#443832",
+  faint_gray  = "#312924",
+  dark_white  = "#8f837a",
+  white       = "#b4a998",
+  black       = "#1b1714",
+  linenr      = "#443832",
+  ui_text     = "#a8968d",
+  ui_text_rev = "#1b1714",
+  comment     = "#8d6050",
 }
+
 
 
 
@@ -36,48 +35,68 @@ local colors = {
 -----------------------------------------------------------
 local highlights = {
 
+  ---------------------------------------------------------
   -- 🧱 Base UI
-  ["Normal"]         = { bg = "none",           fg = colors.white },
-  ["NormalFloat"]    = { bg = MyColors.primary, fg = colors.white },
-  ["NonText"]        = { fg = "#2a2a2a" },
+  ---------------------------------------------------------
+  ["Normal"]          = { bg = MyColors.primary, fg = colors.white },
+  ["NormalFloat"]     = { bg = MyColors.primary, fg = colors.white },
+  ["NonText"]         = { fg = "#332220" },
 
-  ["LineNr"]         = { fg = colors.yellow,     bg = MyColors.secondary, bold = true },
-  ["LineNrAbove"]    = { fg = colors.dark_white, bg = MyColors.primary },
-  ["LineNrBelow"]    = { fg = colors.dark_white, bg = MyColors.primary },
+  ["LineNr"]          = { fg = colors.yellow,     bg = MyColors.secondary, bold = true },
+  ["LineNrAbove"]     = { fg = colors.dark_white, bg = MyColors.primary },
+  ["LineNrBelow"]     = { fg = colors.dark_white, bg = MyColors.primary },
 
-  ["FloatBorder"]    = { bg = MyColors.primary,  fg = colors.ui_text },
-  ["Notification"]   = { bg = MyColors.primary,  fg = colors.ui_text },
-  ["NoiceFormatKind"]= { bg = MyColors.primary,  fg = colors.ui_text },
-  ["Visual"]         = { bg = colors.dark_white, fg = colors.black },
+  ["FloatBorder"]     = { bg = MyColors.primary,  fg = colors.ui_text },
+  ["Notification"]    = { bg = MyColors.primary,  fg = colors.ui_text },
+  ["NoiceFormatKind"] = { bg = MyColors.primary,  fg = colors.ui_text },
+  ["Visual"]          = { bg = colors.dark_white, fg = colors.black },
 
+  ---------------------------------------------------------
   -- Noise
-  ["NoiceCmdline"]      = { bg = MyColors.primary, fg = colors.ui_text },
-  ["NoiceCmdlinePopup"] = { bg = MyColors.primary, fg = colors.ui_text },
-  ["NoiceCmdlinePopupBorder"] = { bg = MyColors.primary, fg = colors.ui_text },
-  ["MsgArea"]           = { bg = MyColors.primary, fg = colors.ui_text },
+  ---------------------------------------------------------
+  ["NoiceCmdline"]           = { bg = MyColors.primary, fg = colors.ui_text },
+  ["NoiceCmdlinePopup"]      = { bg = MyColors.primary, fg = colors.ui_text },
+  ["NoiceCmdlinePopupBorder"]= { bg = MyColors.primary, fg = colors.ui_text },
+  ["MsgArea"]                = { bg = MyColors.primary, fg = colors.ui_text },
 
+  ---------------------------------------------------------
+  -- ⚠️ cmp-nvim
+  ---------------------------------------------------------
+  -- ["CmpItemAbbr"]           = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpItemAbbrDeprecated"] = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpItemAbbrMatch"]      = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpItemAbbrMatchFuzzy"] = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpItemKind"]           = { bg = colors.gray, fg = colors.yellow  },
+  -- ["CmpItemKindIcon"]       = { bg = colors.gray, fg = colors.yellow  },
+  -- ["CmpItemMenu"]           = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpStatus"]             = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpRegisterSource"]     = { bg = colors.gray, fg = colors.ui_text },
+  -- ["CmpUnregisterSource"]   = { bg = colors.gray, fg = colors.ui_text },
+
+  ---------------------------------------------------------
   -- ⚠️ Messages
-  ["ErrorMsg"]       = { fg = colors.red },
-  ["WarningMsg"]     = { fg = colors.orange },
-  ["InfoMsg"]        = { fg = colors.yellow },
+  ---------------------------------------------------------
+  ["ErrorMsg"]      = { fg = colors.red },
+  ["WarningMsg"]    = { fg = colors.orange },
+  ["InfoMsg"]       = { fg = colors.yellow },
 
   ["NotifyBackground"]  = { bg = MyColors.primary },
-  ["NotifyERRORBorder"] = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyERRORBorder"] = { bg = MyColors.primary, fg = colors.red },
   ["NotifyWARNBorder"]  = { bg = MyColors.primary, fg = colors.orange },
-  ["NotifyINFOBorder"]  = { bg = MyColors.primary, fg = colors.green  },
-  ["NotifyDEBUGBorder"] = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyINFOBorder"]  = { bg = MyColors.primary, fg = colors.green },
+  ["NotifyDEBUGBorder"] = { bg = MyColors.primary, fg = colors.gray },
   ["NotifyTRACEBorder"] = { bg = MyColors.primary, fg = colors.yellow },
 
-  ["NotifyERRORIcon"]   = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyERRORIcon"]   = { bg = MyColors.primary, fg = colors.red },
   ["NotifyWARNIcon"]    = { bg = MyColors.primary, fg = colors.orange },
-  ["NotifyINFOIcon"]    = { bg = MyColors.primary, fg = colors.green  },
-  ["NotifyDEBUGIcon"]   = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyINFOIcon"]    = { bg = MyColors.primary, fg = colors.green },
+  ["NotifyDEBUGIcon"]   = { bg = MyColors.primary, fg = colors.gray },
   ["NotifyTRACEIcon"]   = { bg = MyColors.primary, fg = colors.yellow },
 
-  ["NotifyERRORTitle"]  = { bg = MyColors.primary, fg = colors.red,   },
+  ["NotifyERRORTitle"]  = { bg = MyColors.primary, fg = colors.red },
   ["NotifyWARNTitle"]   = { bg = MyColors.primary, fg = colors.orange },
-  ["NotifyINFOTitle"]   = { bg = MyColors.primary, fg = colors.green  },
-  ["NotifyDEBUGTitle"]  = { bg = MyColors.primary, fg = colors.gray   },
+  ["NotifyINFOTitle"]   = { bg = MyColors.primary, fg = colors.green },
+  ["NotifyDEBUGTitle"]  = { bg = MyColors.primary, fg = colors.gray },
   ["NotifyTRACETitle"]  = { bg = MyColors.primary, fg = colors.yellow },
 
   ["NotifyERRORBody"]   = { bg = MyColors.primary, link = "Normal" },
@@ -89,62 +108,55 @@ local highlights = {
   ---------------------------------------------------------
   -- 💬 Syntax Groups
   ---------------------------------------------------------
-  ["comment"]        = { fg = colors.comment, italic = false },
+  ["comment"]                   = { fg = colors.comment, italic = false },
 
   -- Constants
-  ["constant"]                = { fg = colors.yellow },
-  ["@constant"]               = { fg = colors.yellow },
-  ["@constant.builtin"]       = { fg = colors.yellow },
-  ["@constant.numeric"]       = { fg = colors.white },
-  ["@constant.character"]     = { fg = colors.yellow },
+  ["constant"]                  = { fg = colors.yellow },
+  ["@constant"]                 = { fg = colors.yellow },
+  ["@constant.builtin"]         = { fg = colors.yellow },
+  ["@constant.numeric"]         = { fg = colors.white },
+  ["@constant.character"]       = { fg = colors.yellow },
   ["@constant.builtin.boolean"] = { fg = colors.yellow },
 
   -- Functions
-  ["function"]                = { fg = colors.white },
-  ["@function"]               = { fg = colors.white },
-  ["function.call"]           = { fg = colors.white },
-  ["@function.call"]          = { fg = colors.white },
-  ["@function.builtin"]       = { fg = colors.white },
-  ["@function.macro"]         = { fg = colors.white },
-  ["rustFuncCall"]            = { fg = colors.blue_gray },
+  ["function"]              = { fg = colors.white },
+  ["@function"]             = { fg = colors.white },
+  ["function.call"]         = { fg = colors.white },
+  ["@function.call"]        = { fg = colors.white },
+  ["@function.builtin"]     = { fg = colors.white },
+  ["@function.macro"]       = { fg = colors.white },
+  ["rustFuncCall"]          = { fg = colors.blue_gray },
 
   -- Keywords
-  ["keyword"]                 = { fg = colors.yellow },
-  ["@keyword"]                = { fg = colors.yellow },
+  ["keyword"]               = { fg = colors.yellow },
+  ["@keyword"]              = { fg = colors.yellow },
+  ["@keyword.type.cpp"]     = { fg = colors.red },
   ["@keyword.operator.typescript"] = { fg = colors.yellow },
 
   -- Strings
-  ["string"]                  = { fg = colors.green },
-  ["@string.escape"]          = { fg = colors.white },
-  ["@string.special"]         = { fg = colors.green },
+  ["string"]                = { fg = colors.green },
+  ["@string.escape"]        = { fg = colors.white },
+  ["@string.special"]       = { fg = colors.green },
 
   -- Types
-  ["type"]                    = { fg = colors.dark_white },
-  ["@type"]                   = { fg = colors.yellow },
-
-  -- Telescope
-  ["TelescopeResultsNormal"]  = { fg = colors.ui_text, bg = MyColors.primary },
-  ["TelescopeResultsBorder"]  = { fg = colors.ui_text, bg = MyColors.primary },
-  ["TelescopeResultsTitle"]   = { fg = colors.ui_text, bg = MyColors.primary },
-  ["TelescopePromptNormal"]   = { fg = colors.ui_text, bg = MyColors.primary },
-  ["TelescopePromptBorder"]   = { fg = colors.ui_text, bg = MyColors.primary },
-  ["TelescopePromptTitle"]    = { fg = colors.ui_text, bg = MyColors.primary },
+  ["type"]                  = { fg = colors.dark_white },
+  ["@type"]                 = { fg = colors.yellow },
 
   -- Variables & Fields
-  ["@variable"]               = { fg = colors.ui_text },
-  ["@variable.typescript"]    = { fg = colors.ui_text },
-  ["@variable.member"]        = { fg = colors.ui_text },
-  ["@variable.member.typescript"] = { fg = colors.red },
-  ["variable.builtin"]        = { fg = colors.ui_text },
-  ["@variable.parameter"]      = { fg = colors.ui_text },
-  ["@variable.parameter.typescript"]      = { fg = colors.red },
-  ["@property"]               = { fg = colors.ui_text },
-  ["@field"]                  = { fg = colors.yellow },
-  ["@lsp.mod.declaration.typescript"]  = { fg = colors.red },
-  ["@lsp.mod.local.typescript"]  = { fg = colors.red },
-  ["@lsp.typemod.variable.readonly.typescript"]  = { fg = colors.ui_text },
+  ["@variable"]                     = { fg = colors.ui_text },
+  ["@variable.typescript"]          = { fg = colors.ui_text },
+  ["@variable.member"]              = { fg = colors.ui_text },
+  ["@variable.member.typescript"]   = { fg = colors.red },
+  ["variable.builtin"]               = { fg = colors.ui_text },
+  ["@variable.parameter"]           = { fg = colors.ui_text },
+  ["@variable.parameter.typescript"]= { fg = colors.red },
+  ["@property"]                      = { fg = colors.ui_text },
+  ["@field"]                         = { fg = colors.yellow },
+  ["@lsp.mod.declaration.typescript"] = { fg = colors.red },
+  ["@lsp.mod.local.typescript"]     = { fg = colors.red },
+  ["@lsp.typemod.variable.readonly.typescript"] = { fg = colors.ui_text },
   ["@lsp.mod.readonly.typescript"]  = { fg = colors.ui_text },
-  ["@lsp.type.function.typescript"] = { fg = colors.blue_gray },
+  ["@lsp.type.function.typescript"]  = { fg = colors.blue_gray },
 
   -- Clangd
   ["@variable.c"]          = { fg = colors.red },
@@ -153,74 +165,86 @@ local highlights = {
   ["@lsp.type.variable.c"] = { fg = colors.ui_text },
 
   -- Operators & Punctuation
-  ["operator"]                = { fg = colors.ui_text },
-  ["punctuation"]             = { fg = colors.ui_text },
-  ["@punctuation.special"]    = { fg = colors.green },
+  ["operator"]             = { fg = colors.ui_text },
+  ["punctuation"]          = { fg = colors.ui_text },
+  ["@punctuation.special"] = { fg = colors.green },
 
   -- Misc
-  ["@enum"]                   = { fg = colors.orange },
-  ["constructor"]             = { fg = colors.blue },
-  ["special"]                 = { fg = colors.ui_text },
+  ["@enum"]         = { fg = colors.orange },
+  ["constructor"]   = { fg = colors.blue },
+  ["special"]       = { fg = colors.ui_text },
 
   ---------------------------------------------------------
   -- 🧬 Markup & Docs
   ---------------------------------------------------------
-  ["markup.heading"]           = { fg = colors.gray },
-  ["markup.raw.inline"]        = { fg = colors.green },
-  ["markup.bold"]              = { fg = colors.yellow, modifiers = { "bold" } },
-  ["markup.italic"]            = { fg = colors.purple, modifiers = { "italic" } },
-  ["markup.strikethrough"]     = { modifiers = { "crossed_out" } },
-  ["markup.list"]              = { fg = colors.gray },
-  ["markup.quote"]             = { fg = colors.yellow },
-  ["markup.link.url"]          = { fg = colors.cyan, modifiers = { "underlined" } },
-  ["markup.link.text"]         = { fg = colors.purple },
+  ["markup.heading"]        = { fg = colors.gray },
+  ["markup.raw.inline"]     = { fg = colors.green },
+  ["markup.bold"]           = { fg = colors.yellow, modifiers = { "bold" } },
+  ["markup.italic"]         = { fg = colors.purple, modifiers = { "italic" } },
+  ["markup.strikethrough"]  = { modifiers = { "crossed_out" } },
+  ["markup.list"]           = { fg = colors.gray },
+  ["markup.quote"]          = { fg = colors.yellow },
+  ["markup.link.url"]       = { fg = colors.cyan, modifiers = { "underlined" } },
+  ["markup.link.text"]      = { fg = colors.purple },
 
   ---------------------------------------------------------
   -- 🖥️ UI Elements
   ---------------------------------------------------------
-  ["ui.background"]            = { bg = colors.ui_text_rev },
-  ["ui.gutter"]                = { bg = colors.gray },
-  ["ui.virtual"]               = { fg = colors.faint_gray },
-  ["ui.virtual.indent-guide"]  = { fg = colors.faint_gray },
-  ["ui.virtual.whitespace"]    = { fg = colors.light_gray },
-  ["ui.virtual.ruler"]         = { bg = colors.gray },
-  ["ui.virtual.inlay-hint"]    = { fg = colors.blue_gray, modifiers = { "bold" } },
+  ["ui.background"]           = { bg = colors.ui_text_rev },
+  ["ui.gutter"]               = { bg = colors.gray },
+  ["ui.virtual"]              = { fg = colors.faint_gray },
+  ["ui.virtual.indent-guide"] = { fg = colors.faint_gray },
+  ["ui.virtual.whitespace"]   = { fg = colors.light_gray },
+  ["ui.virtual.ruler"]        = { bg = colors.gray },
+  ["ui.virtual.inlay-hint"]   = { fg = colors.blue_gray, modifiers = { "bold" } },
 
   -- Cursor / Selection
-  ["ui.cursor"]                = { fg = colors.white, modifiers = { "reversed" } },
-  ["ui.cursor.primary"]        = { fg = colors.white, modifiers = { "reversed" } },
-  ["ui.cursor.match"]          = { fg = colors.blue, modifiers = { "underlined" } },
-  ["ui.selection"]             = { bg = colors.faint_gray },
-  ["ui.selection.primary"]     = { bg = "#293B5B" },
-  ["ui.cursorline.primary"]    = { bg = colors.gray,  },
+  ["ui.cursor"]             = { fg = colors.white, modifiers = { "reversed" } },
+  ["ui.cursor.primary"]     = { fg = colors.white, modifiers = { "reversed" } },
+  ["ui.cursor.match"]       = { fg = colors.blue, modifiers = { "underlined" } },
+  ["ui.selection"]          = { bg = colors.faint_gray },
+  ["ui.selection.primary"]  = { bg = "#293B5B" },
+  ["ui.cursorline.primary"] = { bg = colors.gray },
 
   -- Highlight
-  ["ui.highlight"]             = { bg = colors.gray },
-  ["ui.highlight.frameline"]   = { bg = "#97202A" },
+  ["ui.highlight"]           = { bg = colors.gray },
+  ["ui.highlight.frameline"] = { bg = "#97202A" },
 
   -- Line Numbers
-  ["ui.linenr"]                = { fg = colors.linenr },
-  ["ui.linenr.selected"]       = { fg = colors.ui_text },
+  ["ui.linenr"]           = { fg = colors.linenr },
+  ["ui.linenr.selected"]  = { fg = colors.ui_text },
 
   -- Statusline
-  ["ui.statusline"]            = { fg = colors.white, bg = colors.gray },
-  ["ui.statusline.inactive"]   = { fg = colors.light_gray, bg = colors.black },
-  ["ui.statusline.normal"]     = { fg = colors.black, bg = colors.blue },
-  ["ui.statusline.insert"]     = { fg = colors.black, bg = colors.green },
-  ["ui.statusline.select"]     = { fg = colors.black, bg = colors.purple },
+  ["ui.statusline"]           = { fg = colors.white, bg = colors.gray },
+  ["ui.statusline.inactive"]  = { fg = colors.light_gray, bg = colors.black },
+  ["ui.statusline.normal"]    = { fg = colors.black, bg = colors.blue },
+  ["ui.statusline.insert"]    = { fg = colors.black, bg = colors.green },
+  ["ui.statusline.select"]    = { fg = colors.black, bg = colors.purple },
 
   -- Text
-  ["ui.text"]                  = { fg = colors.ui_text },
-  ["ui.text.focus"]            = { fg = "#C8CCD4", bg = "#2F343E", modifiers = { "bold" } },
+  ["ui.text"]         = { fg = colors.ui_text },
+  ["ui.text.focus"]   = { fg = "#C8CCD4", bg = "#2F343E", modifiers = { "bold" } },
 
   -- Popups / Menus
-  ["ui.help"]                  = { fg = colors.white, bg = colors.gray },
-  ["ui.popup"]                 = { bg = MyColors.primary },
-  ["ui.window"]                = { fg = colors.gray },
-  ["ui.menu"]                  = { fg = colors.ui_text, bg = colors.gray },
-  ["ui.menu.selected"]         = { fg = colors.ui_text_rev, bg = colors.blue },
-  ["ui.menu.scroll"]           = { fg = colors.ui_text, bg = colors.light_gray },
+  ["ui.help"]           = { fg = colors.white, bg = colors.gray },
+  ["ui.popup"]          = { bg = MyColors.primary },
+  ["ui.window"]         = { fg = colors.gray },
+  ["ui.menu"]           = { fg = colors.ui_text, bg = colors.gray },
+  ["ui.menu.selected"]  = { fg = colors.ui_text_rev, bg = colors.blue },
+  ["ui.menu.scroll"]    = { fg = colors.ui_text, bg = colors.light_gray },
+
+  ---------------------------------------------------------
+  -- Telescope
+  ---------------------------------------------------------
+  ["TelescopeResultsNormal"]  = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopeResultsBorder"]  = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopeResultsTitle"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptNormal"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptBorder"]   = { fg = colors.ui_text, bg = MyColors.primary },
+  ["TelescopePromptTitle"]    = { fg = colors.ui_text, bg = MyColors.primary },
+
 }
+
 
 -----------------------------------------------------------
 -- ⚙️ Apply Highlights
