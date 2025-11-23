@@ -22,7 +22,8 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 
 -- Source key configs quickly
 vim.keymap.set("n", "<leader>;", function()
-  vim.cmd("source ~/.config/nvim/lua/user/cursor.lua")
+  vim.cmd("luafile $MYVIMRC")
+  vim.cmd("source ~/.config/nvim/lua/user/plugins/hint.lua")
 end, { desc = "Source config files" })
 
 -- Source current file

@@ -16,6 +16,7 @@ require("user.plugins.cursor")
 require("user.plugins.tabs")
 require("user.plugins.floattodo")
 require("user.plugins.note")
+require("user.plugins.hint")
 
 -- ─────────────────────────────────────────────
 -- 🧩  Utility

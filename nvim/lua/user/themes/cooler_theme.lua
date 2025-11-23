@@ -7,24 +7,25 @@
 -- #dfdcbc , #eeecec
 -- 🎨 Palette ------------------------------------------------
 local colors = {
-  yellow      = "#b4793b",
-  orange      = "#c17f47",
-  blue        = "#5579a8",
-  blue_gray   = "#464e63",
-  red         = "#b4544d",
-  purple      = "#a674a4",
-  green       = "#849853",
-  cyan        = "#639894",
-  gray        = "#28201d",
-  light_gray  = "#443832",
-  faint_gray  = "#312924",
-  dark_white  = "#8f837a",
-  white       = "#b4a998",
-  black       = "#1b1714",
-  linenr      = "#443832",
-  ui_text     = "#a8968d",
-  ui_text_rev = "#1b1714",
-  comment     = "#8d6050",
+    yellow      = "#8d5a30",
+    orange      = "#a87040",
+    blue        = "#48668e",
+    blue_gray   = "#4e5660",
+    red         = "#994741",
+    purple      = "#6b5971",
+    green       = "#708146",
+    cyan        = "#54817d",
+    gray        = "#221b18",
+    light_gray  = "#392f2a",
+    faint_gray  = "#29221e",
+    dark_white  = "#796f67",
+    white       = "#908778",
+    black       = "#161311",
+    linenr      = "#392f2a",
+    ui_text     = "#8e7f77",
+    ui_text_rev = "#161311",
+    comment     = "#775144",
+    string      = "#8d934e",
 }
 
 
@@ -40,7 +41,7 @@ local highlights = {
   ---------------------------------------------------------
   ["Normal"]          = { bg = MyColors.primary, fg = colors.white },
   ["NormalFloat"]     = { bg = MyColors.primary, fg = colors.white },
-  ["NonText"]         = { fg = "#332220" },
+  ["NonText"]         = { fg = "#342d29", bold = true },
 
   ["LineNr"]          = { fg = colors.yellow,     bg = MyColors.secondary, bold = true },
   ["LineNrAbove"]     = { fg = colors.dark_white, bg = MyColors.primary },
@@ -128,13 +129,15 @@ local highlights = {
   ["rustFuncCall"]          = { fg = colors.blue_gray },
 
   -- Keywords
-  ["keyword"]               = { fg = colors.yellow },
-  ["@keyword"]              = { fg = colors.yellow },
+  ["keyword"]               = { fg = colors.orange },
+  ["@keyword"]              = { fg = colors.orange },
   ["@keyword.type.cpp"]     = { fg = colors.red },
+  ["keyword.import.c"]      = { fg = colors.purple },
   ["@keyword.operator.typescript"] = { fg = colors.yellow },
 
   -- Strings
-  ["string"]                = { fg = colors.green },
+  ["string"]                = { fg = colors.string },
+  ["@string.c"]             = { fg = colors.string },
   ["@string.escape"]        = { fg = colors.white },
   ["@string.special"]       = { fg = colors.green },
 
@@ -159,10 +162,11 @@ local highlights = {
   ["@lsp.type.function.typescript"]  = { fg = colors.blue_gray },
 
   -- Clangd
-  ["@variable.c"]          = { fg = colors.red },
-  ["@function.call.c"]     = { fg = colors.red },
-  ["@lsp.type.function.c"] = { fg = colors.red },
-  ["@lsp.type.variable.c"] = { fg = colors.ui_text },
+  ["@variable.c"]            = { fg = colors.dark_white },
+  ["@function.call.c"]       = { fg = colors.dark_white },
+  ["@lsp.type.function.c"]   = { fg = colors.dark_white },
+  ["@lsp.type.variable.c"]   = { fg = colors.ui_text },
+  ["@lsp.type.enumMember.c"] = { fg = colors.blue_gray },
 
   -- Operators & Punctuation
   ["operator"]             = { fg = colors.ui_text },
